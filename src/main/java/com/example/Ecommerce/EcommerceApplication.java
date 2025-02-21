@@ -1,6 +1,7 @@
 package com.example.Ecommerce;
 
 import com.example.Ecommerce.controller.CategoryAdminController;
+import com.example.Ecommerce.dao.model.Category;
 import com.example.Ecommerce.dto.CategoryResponseDTO;
 import jakarta.persistence.criteria.CriteriaBuilder;
 import org.springframework.boot.SpringApplication;
@@ -19,9 +20,9 @@ public class EcommerceApplication {
 		System.out.println("Application Started");
 
 		CategoryAdminController categoryAdminController = applicationContext.getBean(CategoryAdminController.class);
-//		Category category = new Category();
-//		category.setCategoryName("Home");
-//		categoryAdminController.createCategory(category);
+		Category category = new Category();
+		category.setCategoryName("Home");
+
 
 
 	}
