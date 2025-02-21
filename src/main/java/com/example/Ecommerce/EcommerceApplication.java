@@ -19,9 +19,8 @@ public class EcommerceApplication {
 		ApplicationContext applicationContext = SpringApplication.run(EcommerceApplication.class, args);
 		System.out.println("Application Started");
 
-		CategoryAdminController categoryAdminController = applicationContext.getBean(CategoryAdminController.class);
-		Category category = new Category();
-		category.setCategoryName("Home");
+
+
 
 
 
