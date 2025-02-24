@@ -9,6 +9,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
 
+import java.util.Set;
+
 
 @Data
 @AllArgsConstructor @NoArgsConstructor
@@ -23,4 +25,7 @@ public class Category {
 
     @Column(name = "category_name")
     private String categoryName;
+
+    @OneToMany(mappedBy = "categoryInSubCategory")
+    private Set<SubCategory> subCategories;
 }
