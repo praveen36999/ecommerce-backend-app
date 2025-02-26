@@ -5,9 +5,11 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.stereotype.Component;
 
+
 import java.util.List;
 
 //To transfer data from database to server
+
 @Component
 @Data
 @AllArgsConstructor
@@ -16,10 +18,10 @@ public class CategoryResponseDTO {
 
     private List<CategoryRequestDTO> categoryRequestDTOList;
 
-    int pageNumber;
-    int pageSize;
-    long totalElements;
-    int totalPages;
-    boolean lastPage;
+    private int pageNumber;
+    private int pageSize;
+    private long totalElements;
+    private int totalPages;
+    private boolean lastPage;
 
 }

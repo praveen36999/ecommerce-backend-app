@@ -16,15 +16,28 @@ public class Product {
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private int productId;
 
+    @ManyToOne
+    @JoinColumn(name = "subcategory_id")
+    private SubCategory subCategory;
+
     private String productName;
-
-    private long price;
-
-    private long discountedPrice;
 
     private String description;
 
-    @ManyToOne
-    private SubCategory subCategory;
+    private String image;
+
+    private double price;
+
+    private int quantity;
+
+    private boolean isAvailable;
+
+    private double discount;
+
+    private double discountedPrice;
+
+
+
+
 
 }

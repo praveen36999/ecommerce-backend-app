@@ -26,6 +26,6 @@ public class Category {
     @Column(name = "category_name")
     private String categoryName;
 
-    @OneToMany(mappedBy = "categoryInSubCategory")
+    @OneToMany(mappedBy = "category",cascade = CascadeType.ALL)
     private Set<SubCategory> subCategories;
 }

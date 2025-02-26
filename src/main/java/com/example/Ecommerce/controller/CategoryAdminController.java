@@ -28,7 +28,7 @@ public class CategoryAdminController {
                 @RequestParam(name = "pageNumber",defaultValue = CategoryConstants.DEFAULT_PAGE_NUMBER) Integer pageNumber,
                 @RequestParam(name = "pageSize", defaultValue = CategoryConstants.DEFAULT_PAGE_SIZE) Integer pageSize,
                 @RequestParam(name= "sortBy",defaultValue = DEFAULT_SORT_BY)String sortBy,
-                @RequestParam(name = "sortOder",defaultValue = DEFAULT_SORT_ORDER)String sortOrder)
+                @RequestParam(name = "sortOrder",defaultValue = DEFAULT_SORT_ORDER)String sortOrder)
         {
 
             return  categoryService.getAllCategories(pageNumber,pageSize,sortBy,sortOrder);
@@ -36,7 +36,7 @@ public class CategoryAdminController {
 
 
         //It creates a new category in DB
-        @PostMapping(consumes = "application/json", path = "/categories/addcategory")
+        @PostMapping(consumes = "application/json", path = "/categories/addCategory")
         public ResponseEntity<String> createCategory(@RequestBody CategoryRequestDTO categoryRequestDTO){
             return categoryService.createCategory(categoryRequestDTO);
         }
@@ -54,12 +54,11 @@ public class CategoryAdminController {
         }
 
         //It updates the existing category name
-        @PutMapping(path = "/categories/{categoryId}/update")
+        @PutMapping(path = "/categories/{categoryId}/updateCategory")
         public ResponseEntity<String> updateCategoryName(@PathVariable Long categoryId
                                  ,@Valid @RequestBody CategoryRequestDTO categoryRequestDTO)
 
         {
-            System.out.println("in category controller method");
             categoryService.updateCategoryName(categoryId,categoryRequestDTO);
             return ResponseEntity.status(HttpStatus.OK).body("Category updated successfully");
         }

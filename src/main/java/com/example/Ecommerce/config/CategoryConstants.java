@@ -6,6 +6,6 @@ public class CategoryConstants {
 
    public static final String DEFAULT_SORT_BY = "categoryName";
 
-   public static final String DEFAULT_SORT_ORDER = "asc";
+   public static final String DEFAULT_SORT_ORDER = "default";
 
 }

@@ -19,6 +19,7 @@ public class SubCategory {
     private String subCategoryName;
 
     @ManyToOne
+    @JoinColumn(name = "category_id")
     private Category category;
 
     @OneToMany(mappedBy = "subCategory")

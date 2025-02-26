@@ -37,9 +37,14 @@ public class CategoryServiceImpl implements CategoryService {
 
     //Retrieves all the categories
     @Override
-    public ResponseEntity<CategoryResponseDTO> getAllCategories(int pageNumber,int pagesize,String sortBy,String sortOrder){
-        Sort sortByOrder = sortOrder.equals("asc") ? Sort.by(sortBy).ascending() : Sort.by(sortBy).descending();
-        Pageable pageDetails = PageRequest.of(pageNumber,pagesize,sortByOrder);
+    public ResponseEntity<CategoryResponseDTO> getAllCategories(int pageNumber,int pageSize,String sortBy,String sortOrder){
+        Sort sortByOrder;
+        if(sortOrder.equals("default")){
+             sortByOrder = Sort.unsorted();
+        }else {
+             sortByOrder = sortOrder.equalsIgnoreCase("asc") ? Sort.by(sortBy).ascending() : Sort.by(sortBy).descending();
+        }
+        Pageable pageDetails = PageRequest.of(pageNumber, pageSize, sortByOrder);
         Page<Category> pageResult = categoryRepository.findAll(pageDetails);
 
 
