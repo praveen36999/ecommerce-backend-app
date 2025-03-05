@@ -43,7 +43,7 @@ public class SubCategoryAdminController {
     }
 
     //update subcategory by id
-    @PutMapping("/categories/{subCategoryId}/updateSubCategory")
+    @PutMapping("/categories/{subCategoryId}/update")
     public ResponseEntity<String> updateSubCategoryName(@PathVariable Long subCategoryId,
                                                         @Valid @RequestBody SubCategoryRequestDTO subCategoryRequestDTO){
         return subCategoryService.updateSubCategoryName(subCategoryId,subCategoryRequestDTO);

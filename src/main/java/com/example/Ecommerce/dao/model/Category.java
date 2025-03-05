@@ -26,6 +26,11 @@ public class Category {
     @Column(name = "category_name")
     private String categoryName;
 
-    @OneToMany(mappedBy = "category",cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "category",cascade = CascadeType.ALL,fetch = FetchType.EAGER)
     private Set<SubCategory> subCategories;
+
+    public void addSubCategory(SubCategory subCategory) {
+        subCategory.setCategory(this);  // Set the Category on SubCategory
+        this.subCategories.add(subCategory);  // Add the SubCategory to the Set
+    }
 }

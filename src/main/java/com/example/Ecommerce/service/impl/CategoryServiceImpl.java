@@ -4,7 +4,7 @@ import com.example.Ecommerce.service.api.CategoryService;
 import com.example.Ecommerce.dao.CategoryRepository;
 import com.example.Ecommerce.dao.model.Category;
 import com.example.Ecommerce.dto.CategoryRequestDTO;
-import com.example.Ecommerce.dto.CategoryResponseDTO;
+import com.example.Ecommerce.dto.CategoryResponseAdminDTO;
 import com.example.Ecommerce.service.exception.DuplicateCategoryException;
 import com.example.Ecommerce.service.exception.ResourceNotFoundException;
 import jakarta.validation.Valid;
@@ -31,13 +31,13 @@ public class CategoryServiceImpl implements CategoryService {
     private ModelMapper modelMapper;
 
     @Autowired
-    private CategoryResponseDTO categoryResponseDTO;
+    private CategoryResponseAdminDTO categoryResponseAdminDTO;
 
 
 
     //Retrieves all the categories
     @Override
-    public ResponseEntity<CategoryResponseDTO> getAllCategories(int pageNumber,int pageSize,String sortBy,String sortOrder){
+    public ResponseEntity<CategoryResponseAdminDTO> getAllCategories(int pageNumber, int pageSize, String sortBy, String sortOrder){
         Sort sortByOrder;
         if(sortOrder.equals("default")){
              sortByOrder = Sort.unsorted();
@@ -55,14 +55,14 @@ public class CategoryServiceImpl implements CategoryService {
         List<CategoryRequestDTO> categoryRequestDTOList= categories.stream()
                 .map(category -> modelMapper.map(category,CategoryRequestDTO.class)).toList();
 
-        categoryResponseDTO.setCategoryRequestDTOList(categoryRequestDTOList);
-        categoryResponseDTO.setPageNumber(pageResult.getNumber());
-        categoryResponseDTO.setPageSize(pageResult.getSize());
-        categoryResponseDTO.setTotalElements(pageResult.getTotalElements());
-        categoryResponseDTO.setTotalPages(pageResult.getTotalPages());
-        categoryResponseDTO.setLastPage(pageResult.isLast());
+        categoryResponseAdminDTO.setCategoryRequestDTOList(categoryRequestDTOList);
+        categoryResponseAdminDTO.setPageNumber(pageResult.getNumber());
+        categoryResponseAdminDTO.setPageSize(pageResult.getSize());
+        categoryResponseAdminDTO.setTotalElements(pageResult.getTotalElements());
+        categoryResponseAdminDTO.setTotalPages(pageResult.getTotalPages());
+        categoryResponseAdminDTO.setLastPage(pageResult.isLast());
 
-        return ResponseEntity.status(HttpStatus.OK).body(categoryResponseDTO);
+        return ResponseEntity.status(HttpStatus.OK).body(categoryResponseAdminDTO);
     }
 
     // it checks whether diff category exist with same name else it updates

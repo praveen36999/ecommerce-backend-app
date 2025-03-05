@@ -25,5 +25,9 @@ public class SubCategory {
     @OneToMany(mappedBy = "subCategory")
     private Set<Product> products;
 
+    public void addProduct(Product product){
+        product.setSubCategory(this);
+        this.products.add(product);
+    }
 
 }

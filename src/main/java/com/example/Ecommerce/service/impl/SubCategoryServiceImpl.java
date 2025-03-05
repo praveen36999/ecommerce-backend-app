@@ -4,7 +4,6 @@ import com.example.Ecommerce.dao.CategoryRepository;
 import com.example.Ecommerce.dao.SubCategoryRepository;
 import com.example.Ecommerce.dao.model.Category;
 import com.example.Ecommerce.dao.model.SubCategory;
-import com.example.Ecommerce.dto.CategoryResponseDTO;
 import com.example.Ecommerce.dto.SubCategoryRequestDTO;
 import com.example.Ecommerce.dto.SubCategoryResponseDTO;
 import com.example.Ecommerce.dto.SubCategoryUserResponseDTO;
