@@ -1,10 +1,13 @@
 package com.example.Ecommerce.dao.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.HashSet;
+import java.util.Objects;
 import java.util.Set;
 
 @Entity
@@ -22,12 +25,24 @@ public class SubCategory {
     @JoinColumn(name = "category_id")
     private Category category;
 
-    @OneToMany(mappedBy = "subCategory")
-    private Set<Product> products;
+    public void setCategory(Category category){
+        if (this.category != null && this.category.equals(category)) {
+            return;
+        }
+        this.category = category;
+    }
+
+    @OneToMany(mappedBy = "subCategory",cascade = CascadeType.ALL,orphanRemoval = true)
+    private Set<Product> products = new HashSet<>();
 
     public void addProduct(Product product){
         product.setSubCategory(this);
         this.products.add(product);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(subCategoryId);
     }
 
 }

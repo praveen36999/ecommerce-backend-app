@@ -30,6 +30,7 @@ public class SubCategoryServiceImpl implements SubCategoryService {
 
     @Autowired
     private SubCategoryRepository subCategoryRepository;
+
     @Autowired
     private CategoryRepository categoryRepository;
 
@@ -54,12 +55,13 @@ public class SubCategoryServiceImpl implements SubCategoryService {
         }
         try {
             subCategory.setCategory(category);
+            category.addSubCategory(subCategory);
             subCategoryRepository.save(subCategory);
         }catch(Exception e){
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());
         }
         return ResponseEntity.status(HttpStatus.CREATED)
-                .body(String.format("Subcategory got created successfully in %s",category.getCategoryName()));
+                .body(String.format("New Subcategory got created successfully in %s",category.getCategoryName()));
     }
 
 
@@ -67,7 +69,17 @@ public class SubCategoryServiceImpl implements SubCategoryService {
     @Override
     public ResponseEntity<String> deleteSubCategoryById(Long subCategoryId) {
         SubCategory subCategory = subCategoryRepository.findById(subCategoryId).orElseThrow(()->  new ResourceNotFoundException("Subcategory",subCategoryId));
+        Category category = subCategory.getCategory();
+        category.getSubCategories().remove(subCategory);
         subCategoryRepository.deleteById(subCategoryId);
+        return ResponseEntity.status(HttpStatus.OK).body("SubCategory got deleted successfully");
+    }
+
+    @Override
+    public ResponseEntity<String> deleteSubCategoryByCategory(Category category) {
+        Category categoryResult = categoryRepository.findByCategoryId(category.getCategoryId())
+                .orElseThrow(() -> new ResourceNotFoundException("Category"));
+        categoryResult.getSubCategories().clear();
         return ResponseEntity.status(HttpStatus.OK).body("SubCategory got deleted successfully");
     }
 

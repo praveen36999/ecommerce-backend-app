@@ -1,9 +1,12 @@
 package com.example.Ecommerce.dao.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import java.util.Objects;
 
 @Entity
 @Data
@@ -16,19 +19,17 @@ public class Product {
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private int productId;
 
-    @ManyToOne
-    @JoinColumn(name = "subcategory_id")
-    private SubCategory subCategory;
+
 
     private String productName;
-
-    private String description;
-
-    private String image;
 
     private double price;
 
     private int quantity;
+
+    private String description;
+
+    private String image;
 
     private boolean isAvailable;
 
@@ -36,8 +37,16 @@ public class Product {
 
     private double discountedPrice;
 
+    @ManyToOne
+    @JoinColumn(name = "subcategory_id")
+    @JsonIgnore
+    private SubCategory subCategory;
 
 
+    @Override
+    public int hashCode() {
+        return Objects.hash(productId);
+    }
 
 
 }

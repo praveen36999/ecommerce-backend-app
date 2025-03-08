@@ -14,7 +14,7 @@ import java.util.List;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class CategoryResponseAdminDTO {
+public class CategoryResponseDTO {
 
     private List<CategoryRequestDTO> categoryRequestDTOList;
 

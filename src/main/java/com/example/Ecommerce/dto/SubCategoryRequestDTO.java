@@ -1,5 +1,6 @@
 package com.example.Ecommerce.dto;
 
+import com.example.Ecommerce.dao.model.Product;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
@@ -7,6 +8,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.stereotype.Component;
+
+import java.util.Set;
 
 @Component
 @Data
@@ -22,7 +25,7 @@ public class SubCategoryRequestDTO {
     private String subCategoryName;
 
 
-
+    private Set<Product> products;
 
 
 }

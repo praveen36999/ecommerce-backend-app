@@ -1,5 +1,6 @@
 package com.example.Ecommerce.dto;
 
+import com.example.Ecommerce.dao.model.SubCategory;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
@@ -9,6 +10,7 @@ import lombok.NoArgsConstructor;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
+import java.util.Set;
 
 // to transfer data from client to server
 @Component
@@ -23,6 +25,8 @@ public class CategoryRequestDTO {
     @Size(min = 3, max = 50 , message = "Category name should have length between three and fifty")
     @Pattern(regexp = "^[A-Za-z\s]+$", message = "Category name should contain only Alphabets and Space")
     private String categoryName;
+
+
 
 
 }

@@ -4,7 +4,7 @@ package com.example.Ecommerce.category;
 import com.example.Ecommerce.dao.CategoryRepository;
 import com.example.Ecommerce.dao.model.Category;
 import com.example.Ecommerce.dto.CategoryRequestDTO;
-import com.example.Ecommerce.dto.CategoryResponseAdminDTO;
+import com.example.Ecommerce.dto.CategoryResponseDTO;
 import com.example.Ecommerce.service.exception.ResourceNotFoundException;
 import com.example.Ecommerce.service.impl.CategoryServiceImpl;
 import org.junit.jupiter.api.Assertions;
@@ -41,11 +41,11 @@ public class CategoryServiceTest {
     @Mock
     private CategoryRequestDTO categoryRequestDTO;
     @Mock
-    private CategoryResponseAdminDTO categoryResponseAdminDTO;
+    private CategoryResponseDTO categoryResponseDTO;
     @Mock
     private ResponseEntity<String> response;
     @Mock
-    private ResponseEntity<CategoryResponseAdminDTO> categoryResponseDTOResponseEntity;
+    private ResponseEntity<CategoryResponseDTO> categoryResponseDTOResponseEntity;
 
     @BeforeEach
     void validRequestSetup(){

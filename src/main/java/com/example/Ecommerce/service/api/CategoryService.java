@@ -1,7 +1,7 @@
 package com.example.Ecommerce.service.api;
 
 import com.example.Ecommerce.dto.CategoryRequestDTO;
-import com.example.Ecommerce.dto.CategoryResponseAdminDTO;
+import com.example.Ecommerce.dto.CategoryResponseDTO;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
@@ -21,7 +21,7 @@ public interface CategoryService {
 
     ResponseEntity<String>  deleteCategory(Long categoryId);
 
-    ResponseEntity<CategoryResponseAdminDTO> getAllCategories(int pageNumber, int PageSize, String sortBy, String sortOrder);
+    ResponseEntity<CategoryResponseDTO> getAllCategories(int pageNumber, int PageSize, String sortBy, String sortOrder);
 
     ResponseEntity<String> updateCategoryName(Long categoryIdDTO, CategoryRequestDTO categoryRequestDTO);
 
