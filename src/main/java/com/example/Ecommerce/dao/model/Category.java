@@ -17,7 +17,8 @@ import java.util.Set;
 @Data
 @AllArgsConstructor @NoArgsConstructor
 @Entity
-@Table(name = "categories")
+@Table(name = "Category",uniqueConstraints =
+            @UniqueConstraint(columnNames = "category_name"))
 public class Category {
 
     @Id

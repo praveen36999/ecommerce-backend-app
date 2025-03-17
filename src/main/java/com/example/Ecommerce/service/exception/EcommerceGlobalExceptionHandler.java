@@ -26,14 +26,14 @@ public class EcommerceGlobalExceptionHandler {
         return new ResponseEntity<>(response,HttpStatus.BAD_REQUEST);
     }
 
-    @ExceptionHandler(DuplicateCategoryException.class)
-    public ResponseEntity<String> duplicateCategoryException(DuplicateCategoryException e){
+    @ExceptionHandler(DuplicateEntryException.class)
+    public ResponseEntity<String> duplicateCategoryException(DuplicateEntryException e){
         String message = e.getMessage();
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(message);
     }
 
     @ExceptionHandler(ResourceNotFoundException.class)
-    public ResponseEntity<String> reasourceNotFoundException(ResourceNotFoundException e){
+    public ResponseEntity<String> resourceNotFoundException(ResourceNotFoundException e){
         String message = e.getMessage();
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(message);
     }

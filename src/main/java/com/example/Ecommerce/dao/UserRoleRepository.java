@@ -6,9 +6,13 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.stereotype.Repository;
 
+import java.util.Collection;
 import java.util.List;
+
 @Repository
 public interface UserRoleRepository extends JpaRepository<UserRole,Long> {
 
-    List<UserRole> findAllByUserRole(User user);
+    UserRole findByUser(User user);
+
+
 }

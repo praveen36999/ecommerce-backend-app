@@ -3,6 +3,7 @@ package com.example.Ecommerce.service.security;
 import com.example.Ecommerce.dao.model.User;
 import com.example.Ecommerce.dao.UserRepository;
 import com.example.Ecommerce.dao.UserRoleRepository;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -10,31 +11,35 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
 import java.util.Collection;
-import java.util.Collections;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class UserPrincipal implements UserDetails {
 
-    @Autowired
+
     private UserRepository userRepository;
 
-    @Autowired
+
     private UserRoleRepository userRoleRepository;
 
-    @Autowired
     private User user;
 
-    UserPrincipal(User user){
+    @Autowired
+    UserPrincipal(User user,UserRepository userRepository,UserRoleRepository userRoleRepository){
         this.user = user;
+        this.userRepository = userRepository;
+        this.userRoleRepository = userRoleRepository;
     }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-//        System.out.println(user.getUserName()+ " "+user.getPassword());
-//        List<GrantedAuthority> grantedAuthorityList = userRoleRepository.findAllByUserRole(user)
-//                .stream().map(userRole -> new SimpleGrantedAuthority(userRole.getRoleName()))
-//                .collect(Collectors.toList());
-        return Collections.singleton(new SimpleGrantedAuthority("USER"));
+        User user = userRepository.findByEmailAddress(this.user.getEmailAddress());
+        List<GrantedAuthority> grantedAuthorities = user.getUserRoles().stream()
+                        .map(role -> new SimpleGrantedAuthority(role.getRoleName().name()))
+                                .collect(Collectors.toList());
+        return grantedAuthorities;
     }
 
     @Override
@@ -44,7 +49,7 @@ public class UserPrincipal implements UserDetails {
 
     @Override
     public String getUsername() {
-        return user.getUserName();
+        return user.getEmailAddress();
     }
 
     @Override

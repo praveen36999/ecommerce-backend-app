@@ -15,7 +15,7 @@ public class LoggingAspect {
     private static final Logger LOGGER = LoggerFactory.getLogger(LoggingAspect.class);
 
     @Before("execution(* com.example.Ecommerce.service.impl.*.*(..))")
-    public void beforeServiceMethodInvoking(JoinPoint joinPoint){
+    public void beforeServiceMethodImplInvoking(JoinPoint joinPoint){
        LOGGER.info(joinPoint.getSignature().getName()+"(): Service method invoked");
     }
 
@@ -25,7 +25,7 @@ public class LoggingAspect {
     }
 
     @After("execution(* com.example.Ecommerce.service.impl.*.*(..))")
-    public void afterServiceMethodInvoking(JoinPoint joinPoint){
+    public void afterServiceImplMethodInvoking(JoinPoint joinPoint){
         LOGGER.info(joinPoint.getSignature().getName()+"(): Service method executed successfully");
     }
 
@@ -33,4 +33,8 @@ public class LoggingAspect {
     public void afterControllerMethodInvoking(JoinPoint joinPoint){
         LOGGER.info(joinPoint.getSignature().getName()+"(): Controller method executed successfully");
     }
+
+
+
+
 }

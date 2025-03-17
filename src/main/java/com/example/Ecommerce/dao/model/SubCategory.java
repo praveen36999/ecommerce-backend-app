@@ -12,6 +12,8 @@ import java.util.Set;
 
 @Entity
 @Data @AllArgsConstructor @NoArgsConstructor
+@Table(name="Subcategory",uniqueConstraints =
+            @UniqueConstraint(columnNames = "subcategory_name"))
 public class SubCategory {
     @Id
     @Column(name = "subcategory_id")
@@ -25,6 +27,9 @@ public class SubCategory {
     @JoinColumn(name = "category_id")
     private Category category;
 
+    @OneToMany(mappedBy = "subCategory",cascade = CascadeType.ALL,orphanRemoval = true)
+    private Set<Product> products = new HashSet<>();
+
     public void setCategory(Category category){
         if (this.category != null && this.category.equals(category)) {
             return;
@@ -32,8 +37,6 @@ public class SubCategory {
         this.category = category;
     }
 
-    @OneToMany(mappedBy = "subCategory",cascade = CascadeType.ALL,orphanRemoval = true)
-    private Set<Product> products = new HashSet<>();
 
     public void addProduct(Product product){
         product.setSubCategory(this);
